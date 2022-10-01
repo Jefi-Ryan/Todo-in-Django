@@ -1,0 +1,130 @@
+<html>
+	<head>
+		<title>
+			CreateTodo
+		</title>
+		<style>
+		#main{
+			margin-top: 5em;
+		}
+		.box{
+			display: flex;
+			flex-direction: row-reverse;
+			justify-content: center;
+			margin:0 auto;
+			border-radius: 1em 1em;
+			box-shadow: 1px 1px 1em 2px grey;
+			width: 50%;
+			height: auto;
+			padding:1em 1em 1em 1em;
+			font-family: 'Josefin Sans', sans-serif;
+			font-size: 2em;
+		}
+		.formfield{
+			font-family: 'Ubuntu', sans-serif;
+			font-size: .55em;
+		}
+		.aligner{
+			flex-wrap: nowrap;
+			width: 90%;
+			display: flex;
+			align-items:flex-start;
+		}
+		.Name{
+			font-family: 'Ubuntu', sans-serif;
+			padding: .3em 0 .3em 0;
+			margin-left: 1em;
+			font-weight: 550;
+			font-size: 1em;
+
+		}
+		.date{
+			font-family: 'Ubuntu', sans-serif;
+			padding: .35em 0 .35em 0;
+			margin-left: 1.8em;
+			font-weight: 550;
+			font-size: .85em;
+		}
+		.description{
+			margin-top: .25em;
+			font-family: 'Ubuntu', sans-serif;
+			font-weight: 550;
+			font-size: 1.1em;
+		}
+		.time{
+			font-family: 'Ubuntu', sans-serif;
+			padding: .35em 0 .35em 0;
+			margin-left: 1.8em;
+			font-weight: 550;
+			font-size: .85em;
+		}
+		.submit{
+				border: none;
+				background: #569139;
+				color: white;
+				padding: .5em .5em;
+				border-radius: .5em .5em;
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 1.2rem;
+				text-decoration: none;
+				height: 2%;
+				
+			}
+		.submit:hover{
+				background:#4b7d33;
+				font-weight: medium;	
+			}
+			
+			.back:hover{
+				filter: contrast(50%);
+			}
+			.button{
+				display: inline-flex;
+				gap: 2em;
+				align-items: center;
+
+			}
+	</style>
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div id='main'>
+		<div class='box'>
+		<center>New To Do
+		<div class='aligner'>
+		<div>
+		<form class='formfield' action='' method='POST'>
+			{%load widget_tweaks%}
+			{%for i in form%}
+			{%csrf_token%}
+			{%if i.label == 'Name'%}
+			{{i.errors}}
+			<p align='left'>{{i.label}}
+			{%render_field i class='Name'%}</p>
+			{%elif i.label == 'Date'%}
+			<p align='left'>{{i.label}}{%render_field i class='date' type='date'%}</p>
+			{%elif i.label == 'Description'%}
+			<p align='left'>{{i.label}}{%render_field i class='description ' cols='43' rows='7'%}</textarea></p>
+			{% elif i.label == 'Time' %}
+			<p align='left'>{{i.label}}{%render_field i class='time' type='time'%}</textarea></p>
+				
+			{%endif%}
+			{%endfor%}
+			<div class='button'>
+			<a class='back' href='../'><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+width="64" height="45"
+viewBox="0 0 171 171"
+style=" fill:#26e07f;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,171.99654v-171.99654h171.99654v171.99654z" fill="none"></path><g fill="#569139"><path d="M85.5,6.84c-43.37789,0 -78.66,35.28211 -78.66,78.66c0,43.37789 35.28211,78.66 78.66,78.66c43.37789,0 78.66,-35.28211 78.66,-78.66c0,-43.37789 -35.28211,-78.66 -78.66,-78.66zM126.54,88.92h-73.8239l21.52195,21.52195c1.33594,1.33594 1.33594,3.50015 0,4.83609c-0.66797,0.66797 -1.53633,1.00195 -2.41805,1.00195c-0.88172,0 -1.75008,-0.33398 -2.41805,-1.00195l-27.36,-27.36c-0.32062,-0.32063 -0.5611,-0.69469 -0.73477,-1.10883c-0.34734,-0.84164 -0.34734,-1.7768 0,-2.61844c0.17367,-0.41414 0.41414,-0.7882 0.73477,-1.10883l27.36,-27.36c1.33594,-1.33594 3.50015,-1.33594 4.83609,0c1.33594,1.33594 1.33594,3.50015 0,4.83609l-21.52195,21.52195h73.8239c1.89703,0 3.42,1.53633 3.42,3.42c0,1.88367 -1.52297,3.42 -3.42,3.42z"></path></g></g></svg></a>
+			<input class='submit'type='submit' value='Save'/>
+			<a class='submit' href='{%url "home"%}'>Home</a>
+			</div>
+			
+		</form>
+
+		</div>
+		</div></center>
+		</div>
+	</div>
+	</body>
+</html>

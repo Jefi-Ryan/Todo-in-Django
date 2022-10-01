@@ -1,0 +1,203 @@
+<html>
+	<head>
+		<title>
+			ListTodo
+		</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+		<style>
+		#main{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			font-family: 'Montserrat',sans-serif;
+			font-weight: bold;
+			font-size: 1.1em;
+			padding-top: 3em;
+
+		}
+		body{
+			margin: 0;
+			background: white;
+		}
+			.list{
+				padding: .5em .5em ;
+				background:white;
+				color: color;
+				box-shadow:.25px .25px .25em .25px grey;
+				width: 80%;
+				border-radius: 1.5em 1.5em;
+				margin-bottom: 1.5em;
+
+			}
+			.list:hover{
+				box-shadow: .25px .25px .5em .25px grey;
+			}
+			.head{
+				font-size: 1.25em;
+				
+			}
+			.detail{
+				
+				font-weight: 500;
+			}
+			
+			.row{
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-content: space-between;
+			}
+			.flex{
+				display: inline-flex;
+				flex-wrap: wrap;
+				margin-right: -30%;
+				margin-left: 25%;
+				gap: 10%;
+				width: 10%;
+				padding-top: .5%;
+				
+				
+
+			}
+		
+
+			.row2{
+				flex-shrink: 2em;
+				flex-wrap: wrap;
+				margin-bottom:.25em ;
+
+			}
+			
+			.row1{
+				
+				width: 40%;
+			}
+			.title{
+				font-family: 'Josefin Sans', sans-serif;
+				font-size: 2rem;
+				position:fixed;
+				background: black;
+				color: white;
+				width: 100%;
+				padding-top: 2%;
+				padding-bottom: 2%;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				flex-direction: row;
+				
+			}
+			
+			.description{
+				font-weight: 500;
+			}
+			.more{
+				text-decoration: none;
+				font-family: 'Mukta',sans-serif; 
+				
+				color: white;
+				font-size: 1.4rem;
+			
+
+			}
+			.menu{
+				
+				display: flex;
+				gap: 3em;
+				background: black;
+				align-items: center;
+				justify-content: center;
+				flex-direction: row;
+				width: 100%;
+				padding-top: 5.5em;
+				padding-bottom: .5em;
+			}
+			.search{
+				font-size: 1em;
+				padding: .25em .25em;
+				
+				font-family: 'Ubuntu', sans-serif;
+				border-radius: 2px 2px;
+			}
+			.searchicon{
+				padding: 1px 1px;
+				padding-top: 2px;
+				
+			}
+			.inside{
+				display: inline-flex;
+				margin-bottom: -1.5px;
+				gap: 1px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class='title'>
+			<div class='appname'><center>To Do App</center>
+			</div>
+		</div>
+		<div class='menu'>
+			<div class='home'>
+				<a href='{%url "home"%}'><img src="https://img.icons8.com/ios-glyphs/30/ffffff/home-page--v1.png"/></a>
+			</div>
+			<div >
+				<a class='more' href='{%url "Detail" %}'>Expand
+				</a>
+			</div>
+			<div>
+				<div class='inside'>
+					<form class='inside' name='q' action='{%url "Searchlist" %}' method='GET'>
+						<div>
+							<input class='search' name='q' type=Search placeholder='type here to search'/>
+						</div>
+						<div>
+							<button type='submit' >
+							<img  class='searchicon'src="https://img.icons8.com/ios-filled/20/000000/search.png"/></button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div id='main'>
+			
+
+			{%for i in form%}
+				<div class='list'>
+					<div class='row'>
+						<div class='row1'>
+							<div class='head'>{{i.Name}}
+							</div>
+							<div class='detail'>
+								{{i.Date}} at {{i.Time}}
+							</div>
+						</div>
+						<div class='flex'>
+						<div class='row2'>
+								<a  href='{%url "Updatelist" i.id %}'><img class='image' src='https://img.icons8.com/ios/22/000000/create-new.png'/></a>
+							</div>
+							<div class='row2'>
+								<a  href='{%url "Deletelist" i.id %}'><img class='image' src='https://img.icons8.com/ios/25/000000/multiply.png'/></a>
+							</div>
+							
+							
+						</div>
+						
+					</div>
+					
+					
+				</div>
+				{%empty%}
+					<center>No data to show!</center>
+			{%endfor%}
+		</div>
+	</body>
+</html>
