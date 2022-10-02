@@ -1,7 +1,5 @@
 # Todo in Django
 
-Created this web application for basic money management.
-
 To try this web application
 
 ## Step 1:
