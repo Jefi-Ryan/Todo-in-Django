@@ -1,4 +1,4 @@
-# Todos in Django
+# Todo in Django
 
 To try this web application
 
