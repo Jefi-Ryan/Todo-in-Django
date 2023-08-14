@@ -1,6 +1,6 @@
 # Todo in Django
 
-To try this web app
+To try this web application
 
 ## Step 1:
 Create a virtual environment using cmd.
